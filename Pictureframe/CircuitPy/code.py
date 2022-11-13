@@ -19,7 +19,7 @@ pin_clk = board.GP10
 pin_mosi = board.GP11
 pin_reset = board.GP12
 pin_backlight = board.GP25
-# pin_vbat = board.GP29 // does not work on 
+pin_vBat = board.A3 
 
 # Setup display
 displayio.release_displays()
