@@ -25,13 +25,13 @@ pin_vBat = board.A3
 displayio.release_displays()
 spi = busio.SPI(pin_clk, MOSI=pin_mosi)
 display_bus = displayio.FourWire(spi, command=pin_dc, chip_select=pin_cs, reset=pin_reset)
-display = GC9A01(display_bus, width=240, height=240, brightness=1)
+display = GC9A01(display_bus, width=240, height=240, brightness=1.0, rotation=270)
 led = pwmio.PWMOut(pin_backlight, frequency=5000, duty_cycle=40000) # max 65535
 
 # Read files
-bitmap0 = displayio.OnDiskBitmap("/0.bmp")
-bitmap1 = displayio.OnDiskBitmap("/1.bmp")
-#bitmap2 = displayio.OnDiskBitmap("/2.bmp")
+bitmap0 = displayio.OnDiskBitmap("/bmp/0.bmp")
+bitmap1 = displayio.OnDiskBitmap("/bmp/1.bmp")
+bitmap2 = displayio.OnDiskBitmap("/bmp/2.bmp")
 #bitmap3 = displayio.OnDiskBitmap("/3.bmp")
 #bitmap4 = displayio.OnDiskBitmap("/4.bmp")
 
@@ -46,10 +46,10 @@ while True:
     tile_grid = displayio.TileGrid(bitmap1, pixel_shader=bitmap1.pixel_shader)
     group.append(tile_grid)
     time.sleep(10)
-#     tile_grid = displayio.TileGrid(bitmap2, pixel_shader=bitmap.pixel_shader)
-#     group.pop()
-#     group.append(tile_grid)
-#     sleep(0.1)
+    tile_grid = displayio.TileGrid(bitmap2, pixel_shader=bitmap2.pixel_shader)
+    group.pop()
+    group.append(tile_grid)
+    time.sleep(10)
 #     tile_grid = displayio.TileGrid(bitmap3, pixel_shader=bitmap.pixel_shader)
 #     group.pop()
 #     group.append(tile_grid)
